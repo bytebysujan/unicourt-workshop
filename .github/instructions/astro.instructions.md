@@ -32,6 +32,23 @@ const games = await getAllGames(getDatabase());
 </Layout>
 ```
 
+### Component contracts
+
+- Every reusable component must define a `Props` interface in its frontmatter, even when it currently has only one prop.
+- Add a short TSDoc comment immediately above the interface describing the component's purpose and the contract it exposes.
+- Document each non-obvious property inside the interface. Use the property's type and name for self-explanatory fields instead of duplicating obvious prose.
+- Keep the interface aligned with the rendered behavior. Update or remove property comments when props or rendering semantics change.
+
+```astro
+---
+/** Displays a game summary card with its destination link. */
+interface Props {
+  /** Game data rendered by the card. */
+  game: Game;
+}
+---
+```
+
 ## Layouts
 
 - Create reusable layout components in `src/layouts/`
@@ -110,6 +127,7 @@ There is no Svelte/React layer. When a page genuinely needs client behaviour, ad
 
 - Use TypeScript for type-safe props
 - Define `Props` interface in frontmatter
+- Use TSDoc for reusable component contracts and explain intent rather than restating markup.
 - Type component imports and helper return values
 - Run `npx astro sync` to (re)generate route/content types before linting or type-checking
 - `.astro` files are type-checked by `npm run typecheck:astro` (which runs `astro sync` then `astro check`), on the classic `typescript` package. The pure TypeScript in `db/`, `src/lib/`, and `src/types/` is type-checked separately by `npm run typecheck` (the native TS 7 compiler, `tsgo`), which does **not** process `.astro` files.
@@ -120,3 +138,4 @@ There is no Svelte/React layer. When a page genuinely needs client behaviour, ad
 - Minimize client-side JavaScript — the default is zero JS shipped
 - Import and use global CSS styles from layouts
 - Always include a `data-testid` on interactive elements (see `ui.instructions.md`)
+- Use comments only for non-obvious accessibility, browser, or rendering decisions; do not narrate straightforward template markup.

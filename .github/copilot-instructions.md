@@ -12,6 +12,15 @@ This is a crowdfunding platform for games with a developer theme. The applicatio
 - Always use absolute paths when running scripts and BASH commands
 - **NEVER commit or push to main automatically unless explicitly instructed to do so**
 
+## Comments and documentation
+
+- Comment intent, constraints, and non-obvious decisions — explain **why** the code exists rather than restating **what** the code already says.
+- Prefer clear names and structure over comments that narrate control flow or repeat a function call.
+- Keep comments and documentation next to the code they describe. Update or remove them in the same change when the related behavior changes; stale comments are bugs.
+- Use TSDoc (`/** ... */`) for public TypeScript APIs. Every exported function in `db/` and `src/lib/` must document its purpose, each parameter with `@param`, and its return value with `@returns`. Document injectable `db` parameters explicitly so the testability contract remains clear.
+- Document reusable Astro component `Props` interfaces with a short description for the component contract and a property description for each non-obvious prop.
+- Use inline comments only for reasoning that cannot be expressed clearly in code. Do not add comments that merely paraphrase the next line.
+
 ## Code standards
 
 ### Required Before Each Commit
@@ -35,6 +44,9 @@ This is a crowdfunding platform for games with a developer theme. The applicatio
 ### Code formatting requirements
 
 - Use TypeScript with explicit types for function parameters and return values, especially in the data layer (`db/`, `src/lib/`)
+- Use the repository's existing TypeScript formatting: four-space indentation, single-quoted strings, semicolons, trailing commas in multiline lists/objects, and one declaration per line.
+- Prefer `import type` for type-only imports and keep imports grouped at the top of the module.
+- ESLint enforces the TypeScript recommended rules, unused-variable conventions, and Astro formatting compatibility. Run it after changing TypeScript or Astro files; use the existing style rather than introducing formatter-specific churn.
 - Frontend code (TypeScript, Astro) must pass ESLint checks (`npm run lint`)
 
 ### Data Layer Patterns (Drizzle + Node SQLite)
