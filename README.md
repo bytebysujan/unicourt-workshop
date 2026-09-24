@@ -91,6 +91,18 @@ npm run typecheck:all    # both of the above
 
 ## Copilot Agents & Skills
 
+### Coding standards
+
+Repository-wide coding standards are maintained in
+[`.github/copilot-instructions.md`](.github/copilot-instructions.md), with focused guidance for
+[Astro components](.github/instructions/astro.instructions.md),
+[the Drizzle data layer](.github/instructions/drizzle.instructions.md),
+[UI components](.github/instructions/ui.instructions.md),
+[unit tests](.github/instructions/unit-tests.instructions.md), and
+[Playwright tests](.github/instructions/playwright.instructions.md). These standards require comments
+to explain intent rather than restate code, TSDoc for exported data-layer functions, and documented
+contracts for reusable Astro components.
+
 This project ships Copilot customizations to assist with quality assurance:
 
 ### Database Explorer Canvas
